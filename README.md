@@ -94,7 +94,7 @@
 
 ## 🛠 Технологии
 
-- Python 3.x
-- Django
+- Python 3.11
+- Django 5.1.2
 - Celery + Redis
-- FusionBrain AI API
+- FusionBrain AI API v1
