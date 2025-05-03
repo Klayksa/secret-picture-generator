@@ -1,0 +1,21 @@
+services:
+
+  redis:
+    container_name: redis
+    image: redis:7.4.1-alpine
+
+  image-authentification:
+    container_name: image-authentification
+    build: ./ImageAuthentification
+    command: sh -c "gunicorn ImageAuthentification.wsgi:application --bind 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    depends_on:
+      - redis
+
+  celery:
+    container_name: celery
+    build: ./ImageAuthentification
+    command: sh -c "celery -A ImageAuthentification worker -l info"
+    depends_on:
+      - redis
